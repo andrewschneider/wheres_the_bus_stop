@@ -1,6 +1,5 @@
-wheres_the_bus_stop
-===================
+### Where's the Bus Stop?
 
-visualizing the proposed metro cuts in Seattle
+Visualizing the proposed metro cuts in Seattle.
 
-[http://thatplaybyplay.com/wheres_the_bus_stop/](http://thatplaybyplay.com/wheres_the_bus_stop/ "Where's the Bus Stop?")
+[thatplaybyplay.com/wheres_the_bus_stop/](http://thatplaybyplay.com/wheres_the_bus_stop/ "Where's the Bus Stop?")
