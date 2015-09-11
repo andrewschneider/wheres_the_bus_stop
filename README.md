@@ -14,12 +14,18 @@ pip install -r requirements.txt
 ```
 
 Begin a local webserver:
-`python -m SimpleHTTPServer`
+```
+python -m SimpleHTTPServer
+```
 
 Navigate your browser to the following:
-`localhost:8000/`
+```
+localhost:8000/
+```
 
 #### Rebuilding datasets (optional)
 
 One command will rebuild to the two `.json` files needed to render the map overlay:
-`PYTHONPATH=. python data_gen/build_dataset.py`
+```
+PYTHONPATH=. python data_gen/build_dataset.py
+```
