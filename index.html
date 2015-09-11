@@ -1,121 +1,26 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=1024, user-scalable=no">
-    <style>
-      html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0;}
-      #map{ height: 100% }
-    </style>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
 
-<style>
-.legend {
-    line-height: 24px;
-    color: #555;
-}
+    <title>Where's the Bus Stop?</title>
 
-.legend i {
-    width: 24px;
-    height: 24px;
-    float: left;
-    margin-right: 8px;
-    opacity: 1.0;
-}
+    <link rel="stylesheet" href="assets/leaflet.css" />
+    <link rel="stylesheet" href="assets/style.css" />
 
-h4 {
-    padding: 10px;
-    width: 360px;
-    background-color: white;
-    opacity: 0.9;
-}
+    <script src="assets/jquery-1.11.3.min.js"></script>
+    <script src="assets/d3.min.js"></script>
+    <script src="assets/colorbrewer.js"></script>
+    <script src="assets/leaflet.js"></script>
+    <script src="assets/tile.stamen.js"></script>
+</head>
 
-h2 {
-    padding: 6px;
-    width: 115px;
-    background-color: white;
-    opacity: 0.9;
-}
-</style>
+<body>
+    <div id="map"></div>
 
-<title>Where's the Bus Stop?</title>
+    <script src="assets/app.js"></script>
 
-<link rel="stylesheet" href="assets/leaflet.css" />
-<script src="assets/d3.min.js"></script>
-<script src="assets/colorbrewer.js"></script>
-<script src="assets/leaflet.js"></script>
-
-<div id="map"></div>
-
-<script>
-var m = L.map("map").setView([47.63, -122.33], 12);
-
-var infoBoxText = "This map shows the increase in walking distance, in minutes, from points in Seattle to the nearest bus stop once the proposed cuts to King County Metro bus service go into effect. Assumes 3.0 mph walking speed. Distances were calculated using the Manhattan distance, as most streets in Seattle are oriented N-S. Service levels represent 'peak' hours.";
-
-//make the map
-L.tileLayer("http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.jpg",{minZoom:12,maxZoom:18,opacity:0.75,attribution:'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'})
-.addTo(m);
-
-
-var textBox2 = L.control({position: 'topleft'});
-textBox2.onAdd = function (map) {
-    var div = L.DomUtil.create('div', 'info text');
-        div.innerHTML += '<h2>' + 'What is this?' + '</h4>' 
-    return div;
-};
-textBox2.addTo(m);
-
-var textBox = L.control({position: 'topleft'});
-textBox.onAdd = function (map) {
-    var div = L.DomUtil.create('div', 'info text');
-        div.innerHTML += '<h4>' + infoBoxText + '</h4>' 
-    return div;
-};
-textBox.addTo(m);
-
-d3.json("datasets/legend_ticks_data.json", function(err, data) {
-    var legend = L.control({position: 'bottomright'});
-
-    legend.onAdd = function (map) {
-
-    var div = L.DomUtil.create('div', 'info legend'),
-        grades = data,
-        labels = ['<strong> Increase in walking time to nearest bus stop </strong>']
-
-    // loop through our density intervals and generate a label with a colored square for each interval
-    for (var i = 0; i < grades.length; i++) {
-        div.innerHTML +=
-            '<i style="background:' + colorbrewer.YlOrRd[9][i] + '"></i> <b>' +
-            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + ' mins <br>' : ' mins +</b>');
-
-    }
-
-    return div;
-  };
-
-  legend.addTo(m);
-});
-
-//add the data
-d3.json("datasets/delta_distance.json",function(err,data){
-
-    function onEachFeature(feature, layer) {
-
-        layer.setStyle({"color": colorbrewer.YlOrRd[9][feature.properties.color_idx]});
-        layer.setStyle({"stroke": 0});
-        layer.setStyle({"fillOpacity": 0.75});
-  }
-
-  //New GeoJSON layer
-  var geojsonLayer = new L.GeoJSON(data, {
-      onEachFeature: onEachFeature
-  });
-
-  //Add layer to map
-  m.addLayer(geojsonLayer);
-
-});
-
-
-</script>
-
-<a href="https://github.com/andrewschneider"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+    <a href="https://github.com/andrewschneider"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+</body>
+</html>

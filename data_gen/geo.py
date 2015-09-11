@@ -14,18 +14,15 @@ def haversine(coords1, coords2):
     See http://en.wikipedia.org/wiki/Haversine_formula for reference
     """
 
-    if False:
-        return haversine_approx(coords1, coords2)
+    lat1, lon1, lat2, lon2 = map(math.radians, [coords1[0], coords1[1], coords2[0], coords2[1]])
 
-    else:
-        lat1, lon1, lat2, lon2 = map(math.radians, [coords1[0], coords1[1], coords2[0], coords2[1]])
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+    a = math.sin(dlat / 2.) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2.) ** 2
+    c = 2 * math.asin(math.sqrt(a))
+    dist = EARTH_RADIUS * c
 
-        dlat = lat2 - lat1
-        dlon = lon2 - lon1
-        a = math.sin(dlat / 2.) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2.) ** 2
-        c = 2 * math.asin(math.sqrt(a))
-        dist = EARTH_RADIUS * c
-        return dist
+    return dist
 
 def build_grid(node_spacing):
     "Return a list of [lon, lat] pairs that represent gaussian grid points inside the confines of the city of seattle"

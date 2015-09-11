@@ -1,7 +1,5 @@
 import collections
 
-# TODO: add a shell script to fetch the stop data with curl
-
 def load_existing_stops(return_ids=False):
 
     stop_coords = {}
@@ -27,7 +25,5 @@ def load_future_stops():
 
             if stop_id in existing_stops:
                 del existing_stops[stop_id]
-            # else:
-            #     print stop_id
 
     return existing_stops.values()

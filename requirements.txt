@@ -1,0 +1,2 @@
+Shapely==1.5.12
+wsgiref==0.1.2

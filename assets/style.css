@@ -1,0 +1,36 @@
+.legend {
+    line-height: 24px;
+    color: #555;
+}
+
+.legend i {
+    width: 24px;
+    height: 24px;
+    float: left;
+    margin-right: 8px;
+    opacity: 1.0;
+}
+
+h4 {
+    padding: 10px;
+    width: 360px;
+    background-color: white;
+    opacity: 0.9;
+    border-style: solid;
+    border-width: 2px;
+}
+
+h2 {
+    padding: 6px;
+    width: 115px;
+    background-color: white;
+    opacity: 0.9;
+    border-style: solid;
+    border-width: 2px;
+}
+
+html { height: 100% }
+
+body { height: 100%; margin: 0; padding: 0;}
+
+#map{ height: 100% }
